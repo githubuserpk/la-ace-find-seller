@@ -58,16 +58,18 @@ echo "##########################################################################
 # 
 #
 ##############################################################################
-gcloud beta container clusters create $PRODUCT_CLUSTER_NAME \
+   
+    gcloud beta container clusters create $PRODUCT_CLUSTER_NAME \
     --project $PROJECT_NAME \
     --zone $PROJECT_ZONE \
     --no-enable-basic-auth \
-    --cluster-version "1.9.7-gke.3" \
+    --cluster-version "1.12.8-gke.10" \
     --machine-type "n1-standard-1" \
     --image-type "COS" \
     --disk-type "pd-standard" \
     --disk-size "100" \
     --num-nodes "3" \
+        --scopes "https://www.googleapis.com/auth/devstorage.read_only","https://www.googleapis.com/auth/logging.write","https://www.googleapis.com/auth/monitoring","https://www.googleapis.com/auth/servicecontrol","https://www.googleapis.com/auth/service.management.readonly","https://www.googleapis.com/auth/trace.append" \
     --enable-cloud-logging \
     --enable-cloud-monitoring \
     --network $SERVICES_NETWORK \
@@ -76,6 +78,7 @@ gcloud beta container clusters create $PRODUCT_CLUSTER_NAME \
     --enable-autoupgrade \
     --enable-autorepair \
     --service-account $SA_EMAIL
+    
 
 
 ##############################################################################
